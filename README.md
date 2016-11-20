@@ -1,4 +1,4 @@
-# yamslam
+# Yam Slam
 A playable version of Yam Slam
 
 Yam Slam is a dice game similar to Yatzee.  
