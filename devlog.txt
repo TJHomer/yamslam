@@ -1,0 +1,22 @@
+Devember devlog:
+
+December 1, 2016
+    This is a project I've been working on for about a month now.  I thought of it after learning about OOP from
+    rmotr.com's Intro to Python class (which I highly recommend). The project started out fine but quickly
+    got overwhelming for this beginner.
+    I think the problem was I got carried away with the many classes and objects.  It turned into a giant knot
+    of classes referencing other classes and methods and imports and it got out of hand.
+    Today I sat down and (physically) wrote out how a turn should play and what needed to be done in each step.
+    I commented out the previous code and entered all the steps for what I need to work on next.
+
+    There is still one problem I haven't figured out how to handle.  In the actual game of Yam Slam, there are no
+    tokens for a YamSlam (getting all the same number on the dice).  If you get a Yam Slam, you are to just take the
+    tile left with the most points.  Currently in the code, it checks to see if there are any tokens for a particular
+    combo.  In the case of a Yam Slam, it would throw an error because I never made any tokens for a Yam Slam.  So, as
+    a minor fix, I had to add 100 tokens for Yam Slam.  But I do have to figure out how to work around it.  I may
+    have it check to see if the dice == a combo before it checks to see if there are any tokens.  I don't know yet.
+
+    Goals for tomorrow:  Write the functions for a turn.  I had already done most of the work so I don't think it will
+    be too difficult.
+
+    Stretch goals:  Make the game so you can play against the computer OR create a gui for playing with two people.
