@@ -36,3 +36,22 @@ December 2
 
     Goals for tomorrow: Figure out what is happening with the third roll.  Figure out how to switch players.
     Start writing at least one test every day.  After pushing this, I will find a good tutorial.
+
+December 2 - 2nd update
+    Fixed the part where the Large Straight was scored as a Small Straight.
+
+    if len(set(roll_values)) == 5:
+        if 1 and 6 not in roll_values:
+            return True
+
+    This didn't work, obv. I changed it to this:
+
+    if len(set(roll_values)) == 5:
+        if 1 in roll_values and 6 in roll_values:
+            return False
+        else:
+            return True
+
+    Also -  If you chose to reroll dice on the last turn, it would remove them from the roll but not reroll
+    any to replace them.  That probably caused the error on the Flush. So that is fixed now.
+
