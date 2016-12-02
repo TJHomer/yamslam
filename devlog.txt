@@ -19,4 +19,20 @@ December 1, 2016
     Goals for tomorrow:  Write the functions for a turn.  I had already done most of the work so I don't think it will
     be too difficult.
 
-    Stretch goals:  Make the game so you can play against the computer OR create a gui for playing with two people.
+
+
+December 2
+    I got the main gameplay 'working'.  There are some bugs.
+        1. It doesn't switch players
+        2. It takes out two tokens for a winning hand instead of one
+        3. At least one hand that should have been a Large Straight was scored as a Small Straight.
+        4. I got an error on what should have been a Flush.
+
+    I suppose this means I have to start unittesting.  :( Boo.  Unittesting is large and scary to me.
+    But I know it's a skill I need.  If anything, it will help me understand what I need to return.
+    I think that's the problem with the score_the_roll().  I'm not sure if I'm putting through the proper parameters
+    and I don't have a way of testing it yet.  Playing with the random numbers that I pass through will not get me there.
+    I'm pretty sure there's something wrong with the third roll and what it's returning.
+
+    Goals for tomorrow: Figure out what is happening with the third roll.  Figure out how to switch players.
+    Start writing at least one test every day.  After pushing this, I will find a good tutorial.

@@ -72,7 +72,7 @@ class full_house(Combos):
         roll_values = sorted(Dice.get_roll_values())
         if len(set(roll_values)) == 2:
             if roll_values.count(roll_values[0]) > 1:
-                if roll_values.count(roll_values[4]) > 1:
+                if roll_values.count(roll_values[3]) > 1:
                     return True
 
 

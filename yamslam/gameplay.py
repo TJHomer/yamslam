@@ -3,43 +3,89 @@ from players import *
 from dice import *
 
 
+current_player = p2
+
+
 def check_if_game_over():
-    #check to see if there are chips left
-    #if there are no chips left, announce winner
+    for combo in Combos.combos:
+        if Combos.chips[combo.name] != 0:
+            return True
+        else:
+            announce_winner()
 
 
-def switch_players():
-    pass
+def announce_winner():
+    if p2.points > p1.points:
+        print ('Game over! {} is the winner!'.format(p2.name))
+    else:
+        print ('Game over! {} is the winner!'.format(p1.name))
 
 
-def get_remaining_chips():
-    pass
+def switch_players(whos_up):
+    if whos_up == p2:
+        current_player = p1
+    else:
+        current_player = p2
+    return current_player
+
 
 def keep_or_reroll():
-    pass
+    reroll = [0, 0, 0, 0, 0]
+    for i in range(1, 3):
+        new_roll = len(reroll)
+        Dice.throw_a_roll(new_roll)
+        print(Dice.get_roll_values())
+        print('Type the numbers you would like to reroll')
+        print('or press enter to keep this roll')
+        choice = input('')
+        if choice == '':
+            return reroll
+        else:
+            choice = choice.replace(',', '')
+            choice = choice.replace(' ', '')
+            reroll = [int(i) for i in choice]
+            for number in reroll:
+                for self in Dice.dice_set:
+                    if number == self.value:
+                        Dice.roll.remove(self)
+    return reroll
 
 
-def score_the_roll():
-    pass
+def score_the_roll(winning_roll):
+    print(winning_roll)
+    for combo in Combos.combos:
+        if Combos.chips[combo.name] != 0:
+            if combo.check():
+                Combos.chips[combo.name] -= 1
+                return combo
+    else:
+        return None
 
 
-def add_points():
-    pass
+def add_points(combo):
+    current_player.points += combo.points
+
 
 
 
 def game():
-    #check if game is over
-    #announce what player is up
-    #announce what chips are left
-    #roll dice and get values
-    #reroll if the player wants too
-        #repeat if needed
-    #score the roll depending on what chip is there
-        #remove chip from inventory
-    #add points to the current player and announce current score
-    #switch players
-    #reset dice
+    if check_if_game_over():
+        switch_players(current_player)
+    else:
+        return False
+    print ("It is {}'s turn.".format(current_player.name))
+    print (Combos.chips)
+    roll_values = keep_or_reroll()
+    if score_the_roll(roll_values):
+        winning_roll = score_the_roll(roll_values)
+        print ('You got {}!'.format(winning_roll.name))
+        add_points(winning_roll)
+    else:
+        print ('Sorry, you got nothing.')
+    print('Current score: {}: {}  {}: {}'.format(p1.name, p1.points, p2.name, p2.points))
+    Dice.roll = []
+
+
 
 
 
@@ -129,3 +175,7 @@ Gameplay.turn()
 Gameplay.turn()
 Gameplay.turn()
 '''
+
+Combos.initialize_game()
+while True:
+    game()
