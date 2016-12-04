@@ -1,4 +1,7 @@
-from players import *
+from dice import *
+
+
+
 from dice import *
 
 class Combos:
@@ -44,7 +47,9 @@ class large_straight(Combos):
     def check(self):
         roll_values = Dice.get_roll_values()
         if len(set(roll_values)) == 5:
-            if 1 and 6 not in roll_values:
+            if 1 in roll_values and 6 in roll_values:
+                return False
+            else:
                 return True
 
 
