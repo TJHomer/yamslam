@@ -52,7 +52,7 @@ December 2 - 2nd update
         else:
             return True
 
-    Also -  If you chose to reroll dice on the last turn, it would remove them from the roll but not reroll
+    Also -  If you chose to re-roll dice on the last turn, it would remove them from the roll but not reroll
     any to replace them.  That probably caused the error on the Flush. So that is fixed now.
 
 
@@ -64,11 +64,26 @@ December 3
     I still seem to have trouble scoring a roll.  Now I'm getting an error on 3 of a kind, that wasn't there before.
 
     I briefly took a foray into scrapping the idea that dice are objects and tried to just do numbers.  The immediate
-    problem I ran into was - when the player chose to reroll a die, it removed every instance of that number.  For example:
-    roll was [1, 2, 3, 4, 4] and the player wanted to reroll 4, what would come back was [1, 2, 3].  So I scrapped that
+    problem I ran into was - when the player chose to re-roll a die, it removed every instance of that number.  For example:
+    roll was [1, 2, 3, 4, 4] and the player wanted to re-roll 4, what would come back was [1, 2, 3].  So I scrapped that
     and went back to having dice as objects.  Perhaps I will be able to figure it out later.
 
     I think what will fix the 3 of a kind error is creating parameters for the function that checks it.  I seem to have
     a large lack of parameters in my functions and it's getting messy.  That will make tests easier too, right?  Right?!
 
     Goals for tomorrow: Create tests for score_the_roll().  That might take all day so I'll leave it at that.
+
+
+December 4
+    I now have unittests written for each of the combos, which cleared up some confusion I had on parameters. Also somehow
+    it fixed that 2 chips were removed for each winning roll.  Not sure how that happened.
+    It still is not switching players, even though my test is working properly.
+    Also I changed a flush from being dependant on color (which the user can't see anyway), to being dependant on if
+    the number is even or odd.  I now have a defunct method called get_roll_colors() which I'll probably delete.
+
+    Goals for tomorrow:  The way the program works is - it checks each combo in turn, starting with the highest points
+    combo.  If there are no chips left for that combo, it will skip it and go to the next combo.  However, in real life,
+    you might get pseudo combos that will fit in other categories.  For example, if you have [1, 1, 1, 1, 3], but there
+    are no Four of a Kind chips left, you may choose to take a Two Pair chip, since you technically have two pairs of 1s.
+    But, the game doesn't see it that way.  [1, 1, 1, 1, 3] will fail the Two Pair test.  So tomorrow I will write in
+    checks for that (and tests).  If I have time I will try to figure out the player switching thing again.

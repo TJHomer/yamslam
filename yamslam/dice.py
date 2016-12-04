@@ -20,12 +20,6 @@ class Dice:
             roll_values.append(self.value)
         return roll_values
 
-    @classmethod
-    def get_roll_colors(cls):
-        roll_colors = []
-        for self in Dice.roll:
-            roll_colors.append(self.color)
-        return roll_colors
 
 
 

@@ -1,8 +1,7 @@
-from dice import *
 
 
 
-from dice import *
+from yamslam.dice import *
 
 class Combos:
     combos = []
@@ -30,9 +29,8 @@ class yam_slam(Combos):
         Combos.combos.append(self)
 
 
-    def check(self):
-        roll_values = Dice.get_roll_values()
-        if len(set(roll_values)) == 1:
+    def check(self, winning_roll):
+        if len(set(winning_roll)) == 1:
             return True
 
 
@@ -44,11 +42,10 @@ class large_straight(Combos):
 
 
 
-    def check(self):
-        roll_values = Dice.get_roll_values()
-        if len(set(roll_values)) == 5:
-            if 1 in roll_values and 6 in roll_values:
-                return False
+    def check(self, winning_roll):
+        if len(set(winning_roll)) == 5:
+            if 1 in winning_roll and 6 in winning_roll:
+                return None
             else:
                 return True
 
@@ -60,10 +57,10 @@ class four_of_a_kind(Combos):
         Combos.combos.append(self)
 
 
-    def check(self):
-        roll_values = sorted(Dice.get_roll_values())
-        if len(set(roll_values)) == 2:
-            if roll_values.count(roll_values[3]) == 4:
+    def check(self, winning_roll):
+        if len(set(winning_roll)) == 2:
+            winning_roll = sorted(winning_roll)
+            if winning_roll.count(winning_roll[3]) == 4:
                 return True
 
 
@@ -73,11 +70,11 @@ class full_house(Combos):
         self.points = 30
         Combos.combos.append(self)
 
-    def check(self):
-        roll_values = sorted(Dice.get_roll_values())
-        if len(set(roll_values)) == 2:
-            if roll_values.count(roll_values[0]) > 1:
-                if roll_values.count(roll_values[3]) > 1:
+    def check(self, winning_roll):
+        if len(set(winning_roll)) == 2:
+            winning_roll = sorted(winning_roll)
+            if winning_roll.count(winning_roll[0]) > 1:
+                if winning_roll.count(winning_roll[3]) > 1:
                     return True
 
 
@@ -88,9 +85,12 @@ class flush(Combos):
         Combos.combos.append(self)
 
 
-    def check(self):
-        roll_colors = Dice.get_roll_colors()
-        if len(set(roll_colors)) == 1:
+    def check(self, winning_roll):
+        evens = []
+        for elem in range(0, 5):
+            if winning_roll[elem] % 2:
+                evens.append(winning_roll[elem])
+        if len(evens) == 5 or len(evens) == 0:
             return True
 
 
@@ -102,14 +102,13 @@ class small_straight(Combos):
         Combos.combos.append(self)
 
 
-    def check(self):
-        roll_values = list(Dice.get_roll_values())
-        if 3 in roll_values and 4 in roll_values:
-            if 1 in roll_values and 2 in roll_values:
+    def check(self, winning_roll):
+        if 3 in winning_roll and 4 in winning_roll:
+            if 1 in winning_roll and 2 in winning_roll:
                 return True
-            elif 2 in roll_values and 5 in roll_values:
+            elif 2 in winning_roll and 5 in winning_roll:
                 return True
-            elif 5 in roll_values and 6 in roll_values:
+            elif 5 in winning_roll and 6 in winning_roll:
                 return True
 
 
@@ -120,9 +119,9 @@ class three_of_a_kind(Combos):
         Combos.combos.append(self)
 
 
-    def check(self):
-        roll_values = sorted(Dice.get_roll_values())
-        if roll_values.count(roll_values[2]) == 3:
+    def check(self, winning_roll):
+        winning_roll = sorted(winning_roll)
+        if winning_roll.count(winning_roll[2]) == 3:
             return True
 
 
@@ -134,12 +133,11 @@ class two_pair(Combos):
         Combos.combos.append(self)
 
 
-    def check(self):
-        roll_values = Dice.get_roll_values()
+    def check(self, winning_roll):
         is_it_two_pair = []
         for i in range(0,4):
-            if roll_values.count(roll_values[i]) == 2:
-                is_it_two_pair.append(roll_values[i])
+            if winning_roll.count(winning_roll[i]) == 2:
+                is_it_two_pair.append(winning_roll[i])
         if len(set(is_it_two_pair)) == 2:
             return True
 

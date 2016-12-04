@@ -42,7 +42,7 @@ def keep_or_reroll():
         print('or press enter to keep this roll')
         choice = input('')
         if choice == '':
-            return Dice.roll
+            return Dice.get_roll_values()
         else:
             choice = choice.replace(',', '')
             choice = choice.replace(' ', '')
@@ -53,7 +53,7 @@ def keep_or_reroll():
                         Dice.roll.remove(self)
     Dice.throw_a_roll(len(reroll))
     print(Dice.get_roll_values())
-    return Dice.roll
+    return Dice.get_roll_values()
 
 
 
@@ -61,10 +61,12 @@ def score_the_roll(winning_roll):
     print(winning_roll)
     for combo in Combos.combos:
         if Combos.chips[combo.name] != 0:
-            if combo.check():
+            if combo.check(winning_roll):
                 Combos.chips[combo.name] -= 1
-                return combo
+                print('You got {}!'.format(combo.name))
+                return combo.name
     else:
+        print('Sorry, you got nothing.')
         return None
 
 
@@ -81,7 +83,9 @@ def game():
         return False
     print ("It is {}'s turn.".format(next_turn.name))
     print (Combos.chips)
-    score_the_roll(keep_or_reroll())
+    roll = keep_or_reroll()
+    score_the_roll(roll)
+    Dice.roll = []
 
     '''
     keep_or_reroll()
@@ -97,6 +101,7 @@ def game():
 
 
 Combos.initialize_game()
-game()
+while True:
+    game()
 
 
