@@ -1,12 +1,7 @@
 import unittest
 from yamslam.combos import *
 
-class TestingYamSlam(unittest.TestCase):
-    def test_a_yam_slam(self):
-        self.assertEqual(ys.check([1, 1, 1, 1, 1]), True)
 
-    def test_not_a_yam_slam(self):
-        self.assertEqual(ys.check([1, 1, 1, 1, 2]), None)
 
 
 class TestingLargeStraight(unittest.TestCase):
@@ -19,6 +14,9 @@ class TestingLargeStraight(unittest.TestCase):
     def test_not_a_large_straight(self):
         self.assertEqual(ls.check([1, 2, 3, 4, 6]), None)
 
+    def test_a_yam_slam(self):
+        self.assertEqual(ls.check([1, 1, 1, 1, 1]), True)
+
 
 class TestingFourOfAKind(unittest.TestCase):
     def test_four_of_a_kind(self):
@@ -29,6 +27,9 @@ class TestingFourOfAKind(unittest.TestCase):
 
     def test_also_not_four_of_a_kind(self):
         self.assertEqual(fk.check([1, 1, 1, 2, 3]), None)
+
+    def test_a_yam_slam(self):
+        self.assertEqual(fk.check([1, 1, 1, 1, 1]), True)
 
 
 class TestingFullHouse(unittest.TestCase):
@@ -44,6 +45,9 @@ class TestingFullHouse(unittest.TestCase):
     def test_also_not_full_house(self):
         self.assertEqual(fh.check([1, 1, 2, 2, 3]), None)
 
+    def test_a_yam_slam(self):
+        self.assertEqual(fh.check([1, 1, 1, 1, 1]), True)
+
 
 class TestingFlush(unittest.TestCase):
     def test_flush(self):
@@ -57,6 +61,9 @@ class TestingFlush(unittest.TestCase):
 
     def test_also_not_flush(self):
         self.assertEqual(fl.check([1, 1, 2, 2, 3]), None)
+
+    def test_a_yam_slam(self):
+        self.assertEqual(fl.check([1, 1, 1, 1, 1]), True)
 
 
 class TestingSmallStraight(unittest.TestCase):
@@ -75,6 +82,9 @@ class TestingSmallStraight(unittest.TestCase):
     def test_also_not_a_small_straight(self):
         self.assertEqual(ss.check([1, 2, 3, 5, 6]), None)
 
+    def test_a_yam_slam(self):
+        self.assertEqual(ss.check([1, 1, 1, 1, 1]), True)
+
 
 class TestingThreeOfAKind(unittest.TestCase):
     def test_three_of_a_kind(self):
@@ -89,6 +99,15 @@ class TestingThreeOfAKind(unittest.TestCase):
     def test_also_not_three_of_a_kind(self):
         self.assertEqual(tk.check([1, 2, 3, 4, 4]), None)
 
+    def test_a_yam_slam(self):
+        self.assertEqual(tk.check([1, 1, 1, 1, 1]), True)
+
+    def test_pseudo_four_of_a_kind(self):
+        self.assertEqual(tk.check([1, 1, 1, 1, 4]), True)
+
+    def test_pseudo_full_house(self):
+        self.assertEqual(tk.check([1, 1, 1, 3, 3]), True)
+
 
 class TestingTwoPair(unittest.TestCase):
     def test_two_pair(self):
@@ -99,3 +118,12 @@ class TestingTwoPair(unittest.TestCase):
 
     def test_not_two_pair(self):
         self.assertEqual(tp.check([1, 1, 3, 5, 4]), None)
+
+    def test_a_yam_slam(self):
+        self.assertEqual(tp.check([1, 1, 1, 1, 1]), True)
+
+    def test_pseudo_four_of_a_kind(self):
+        self.assertEqual(tp.check([1, 1, 1, 1, 4]), True)
+
+    def test_pseudo_full_house(self):
+        self.assertEqual(tp.check([1, 1, 1, 3, 3]), True)

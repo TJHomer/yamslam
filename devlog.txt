@@ -87,3 +87,14 @@ December 4
     are no Four of a Kind chips left, you may choose to take a Two Pair chip, since you technically have two pairs of 1s.
     But, the game doesn't see it that way.  [1, 1, 1, 1, 3] will fail the Two Pair test.  So tomorrow I will write in
     checks for that (and tests).  If I have time I will try to figure out the player switching thing again.
+
+
+December 5
+    I added checks for the pseudo-combos, and in that, figured out the yam slam problem I mentioned on December 1.
+    To change it, in every check combo function, I first added a check to see if it was a yam slam.  It is the same approach
+    I took for the pseudo combo problem.  It seems pretty obvious now that I did it. All tests passed.
+    I also wrote tests for the function that checks if the game is over.  To find out, it looks in the chips dictionary
+    to see if there are any chips left.  If not, it continues the game.  If there are no chips left, it should move to
+    announce the winner.  But first, that pesky player switching problem.
+
+    Goals for tomorrow:  Player swtiching - for reals.

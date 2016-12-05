@@ -10,14 +10,13 @@ class Combos:
 
     @classmethod
     def initialize_game(cls):
-        Combos.chips[ys.name] = 100
-        Combos.chips[ls.name] = 4
-        Combos.chips[fk.name] = 4
-        Combos.chips[fh.name] = 4
-        Combos.chips[fl.name] = 4
-        Combos.chips[ss.name] = 4
-        Combos.chips[tk.name] = 4
-        Combos.chips[tp.name] = 4
+        Combos.chips[ls.name] = 0
+        Combos.chips[fk.name] = 2
+        Combos.chips[fh.name] = 0
+        Combos.chips[fl.name] = 5
+        Combos.chips[ss.name] = 0
+        Combos.chips[tk.name] = 3
+        Combos.chips[tp.name] = 0
         return Combos.chips
 
 
@@ -25,8 +24,6 @@ class Combos:
 class yam_slam(Combos):
     def __init__ (self):
         self.name = 'Yam Slam'
-        self.points = 50
-        Combos.combos.append(self)
 
 
     def check(self, winning_roll):
@@ -43,10 +40,14 @@ class large_straight(Combos):
 
 
     def check(self, winning_roll):
-        if len(set(winning_roll)) == 5:
+        if ys.check(winning_roll):
+            print('You got {}!'.format(ys.name))
+            return True
+        elif len(set(winning_roll)) == 5:
             if 1 in winning_roll and 6 in winning_roll:
                 return None
             else:
+                print('You got {}!'.format(ls.name))
                 return True
 
 
@@ -58,9 +59,13 @@ class four_of_a_kind(Combos):
 
 
     def check(self, winning_roll):
-        if len(set(winning_roll)) == 2:
+        if ys.check(winning_roll):
+            print('You got {}!'.format(ys.name))
+            return True
+        elif len(set(winning_roll)) == 2:
             winning_roll = sorted(winning_roll)
             if winning_roll.count(winning_roll[3]) == 4:
+                print('You got {}!'.format(fk.name))
                 return True
 
 
@@ -71,10 +76,14 @@ class full_house(Combos):
         Combos.combos.append(self)
 
     def check(self, winning_roll):
-        if len(set(winning_roll)) == 2:
+        if ys.check(winning_roll):
+            print('You got {}!'.format(ys.name))
+            return True
+        elif len(set(winning_roll)) == 2:
             winning_roll = sorted(winning_roll)
             if winning_roll.count(winning_roll[0]) > 1:
                 if winning_roll.count(winning_roll[3]) > 1:
+                    print('You got {}!'.format(fh.name))
                     return True
 
 
@@ -90,7 +99,11 @@ class flush(Combos):
         for elem in range(0, 5):
             if winning_roll[elem] % 2:
                 evens.append(winning_roll[elem])
-        if len(evens) == 5 or len(evens) == 0:
+        if ys.check(winning_roll):
+            print('You got {}!'.format(ys.name))
+            return True
+        elif len(evens) == 5 or len(evens) == 0:
+            print('You got {}!'.format(fl.name))
             return True
 
 
@@ -103,12 +116,18 @@ class small_straight(Combos):
 
 
     def check(self, winning_roll):
-        if 3 in winning_roll and 4 in winning_roll:
+        if ys.check(winning_roll):
+            print('You got {}!'.format(ys.name))
+            return True
+        elif 3 in winning_roll and 4 in winning_roll:
             if 1 in winning_roll and 2 in winning_roll:
+                print('You got {}!'.format(ss.name))
                 return True
             elif 2 in winning_roll and 5 in winning_roll:
+                print('You got {}!'.format(ss.name))
                 return True
             elif 5 in winning_roll and 6 in winning_roll:
+                print('You got {}!'.format(ss.name))
                 return True
 
 
@@ -121,7 +140,14 @@ class three_of_a_kind(Combos):
 
     def check(self, winning_roll):
         winning_roll = sorted(winning_roll)
-        if winning_roll.count(winning_roll[2]) == 3:
+        if ys.check(winning_roll):
+            print('You got {}!'.format(ys.name))
+            return True
+        elif fk.check(winning_roll):
+            print('You got {}!'.format(tk.name))
+            return True
+        elif winning_roll.count(winning_roll[2]) == 3:
+            print('You got {}!'.format(tk.name))
             return True
 
 
@@ -138,7 +164,14 @@ class two_pair(Combos):
         for i in range(0,4):
             if winning_roll.count(winning_roll[i]) == 2:
                 is_it_two_pair.append(winning_roll[i])
-        if len(set(is_it_two_pair)) == 2:
+        if ys.check(winning_roll):
+            print('You got {}!'.format(ys.name))
+            return True
+        elif fk.check(winning_roll) or fh.check(winning_roll):
+            print('You got {}!'.format(tp.name))
+            return True
+        elif len(set(is_it_two_pair)) == 2:
+            print('You got {}!'.format(tp.name))
             return True
 
 ys = yam_slam()

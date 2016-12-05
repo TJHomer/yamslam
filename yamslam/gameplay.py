@@ -10,12 +10,14 @@ roll = []
 
 
 
-def check_if_game_over():
-    for combo in Combos.combos:
-        if Combos.chips[combo.name] != 0:
-            return True
-        else:
-            announce_winner()
+def check_if_game_over(chips):
+    chips_left = 0
+    for i in chips.values():
+        chips_left += i
+    if chips_left == 0:
+        return False
+    else:
+        return True
 
 
 def announce_winner():
@@ -63,7 +65,6 @@ def score_the_roll(winning_roll):
         if Combos.chips[combo.name] != 0:
             if combo.check(winning_roll):
                 Combos.chips[combo.name] -= 1
-                print('You got {}!'.format(combo.name))
                 return combo.name
     else:
         print('Sorry, you got nothing.')
@@ -77,9 +78,10 @@ def add_points(combo):
 
 
 def game():
-    if check_if_game_over():
+    if check_if_game_over(Combos.chips):
         next_turn = switch_players(current_player)
     else:
+        announce_winner()
         return False
     print ("It is {}'s turn.".format(next_turn.name))
     print (Combos.chips)
@@ -87,21 +89,10 @@ def game():
     score_the_roll(roll)
     Dice.roll = []
 
-    '''
-    keep_or_reroll()
-    if score_the_roll(roll_values):
-        winning_roll = score_the_roll(roll_values)
-        print ('You got {}!'.format(winning_roll.name))
-        add_points(winning_roll)
-    else:
-        print ('Sorry, you got nothing.')
-    print('Current score: {}: {}  {}: {}'.format(p1.name, p1.points, p2.name, p2.points))
-    Dice.roll = []
-'''
+
 
 
 Combos.initialize_game()
 while True:
     game()
-
 
