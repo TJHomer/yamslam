@@ -1,24 +1,12 @@
 
 
 class Players:
-    participants = []
+    def __init__(self, name, points):
+        self.name = name
+        self.points = points
 
 
 
-class Player_one(Players):
-    def __init__(self):
-        self.name = 'Player One'
-        self.points = 0
-        Players.participants.append(self)
-
-
-class Player_two(Players):
-    def __init__(self):
-        self.name = 'Player Two'
-        self.points = 0
-        Players.participants.append(self)
-
-
-p1 = Player_one()
-p2 = Player_two()
+p1 = Players('Player One', 0)
+p2 = Players('Player Two', 0)
 

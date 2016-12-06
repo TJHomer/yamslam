@@ -3,11 +3,7 @@ from yamslam.players import *
 from yamslam.dice import *
 
 
-current_player = p2
 roll = []
-
-
-
 
 
 def check_if_game_over(chips):
@@ -20,15 +16,17 @@ def check_if_game_over(chips):
         return True
 
 
-def announce_winner():
-    if p2.points > p1.points:
-        print ('Game over! {} is the winner!'.format(p2.name))
+def announce_winner(player_one, player_two):
+    if player_two.points > player_one.points:
+        print ('Game over! {} is the winner!'.format(player_two.name))
+        return player_two
     else:
-        print ('Game over! {} is the winner!'.format(p1.name))
+        print ('Game over! {} is the winner!'.format(player_one.name))
+        return player_one
 
 
-def switch_players(whos_up):
-    if whos_up == p2:
+def switch_players(new_player):
+    if new_player == p2:
         current_player = p1
     else:
         current_player = p2
@@ -58,41 +56,47 @@ def keep_or_reroll():
     return Dice.get_roll_values()
 
 
-
 def score_the_roll(winning_roll):
     print(winning_roll)
     for combo in Combos.combos:
         if Combos.chips[combo.name] != 0:
             if combo.check(winning_roll):
                 Combos.chips[combo.name] -= 1
-                return combo.name
+                return combo
+
     else:
         print('Sorry, you got nothing.')
         return None
 
 
-def add_points(combo):
-    current_player.points += combo.points
-
-
-
-
-def game():
-    if check_if_game_over(Combos.chips):
-        next_turn = switch_players(current_player)
+def add_points(current_player, combo):
+    if combo == None:
+        current_player.points += 0
     else:
-        announce_winner()
+        current_player.points += combo.points
+    return current_player.points
+
+
+def game(current_player):
+    if check_if_game_over(Combos.chips):
+        pass
+    else:
+        announce_winner(p1, p2)
         return False
-    print ("It is {}'s turn.".format(next_turn.name))
+    print ("It is {}'s turn.".format(current_player.name))
     print (Combos.chips)
     roll = keep_or_reroll()
-    score_the_roll(roll)
+    winning_combo = score_the_roll(roll)
+    add_points(current_player, winning_combo)
+    print ('{} has {} points'.format(current_player.name, current_player.points))
     Dice.roll = []
 
 
 
 
 Combos.initialize_game()
+current_player = p1
 while True:
-    game()
+    game(current_player)
+    current_player = switch_players(current_player)
 

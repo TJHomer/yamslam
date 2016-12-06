@@ -21,6 +21,7 @@ December 1, 2016
 
 
 
+
 December 2
     I got the main gameplay 'working'.  There are some bugs.
         1. It doesn't switch players
@@ -58,6 +59,7 @@ December 2 - 2nd update
 
 
 
+
 December 3
     It seems that the more things I fix, the more problems come up.  I seemed to have fixed the player switching problem.
     At the least it passes the test I wrote.  And hey - I wrote a test!
@@ -72,6 +74,8 @@ December 3
     a large lack of parameters in my functions and it's getting messy.  That will make tests easier too, right?  Right?!
 
     Goals for tomorrow: Create tests for score_the_roll().  That might take all day so I'll leave it at that.
+
+
 
 
 December 4
@@ -89,6 +93,7 @@ December 4
     checks for that (and tests).  If I have time I will try to figure out the player switching thing again.
 
 
+
 December 5
     I added checks for the pseudo-combos, and in that, figured out the yam slam problem I mentioned on December 1.
     To change it, in every check combo function, I first added a check to see if it was a yam slam.  It is the same approach
@@ -97,4 +102,17 @@ December 5
     to see if there are any chips left.  If not, it continues the game.  If there are no chips left, it should move to
     announce the winner.  But first, that pesky player switching problem.
 
-    Goals for tomorrow:  Player swtiching - for reals.
+    Goals for tomorrow:  Player switching - for reals.
+
+
+
+December 6
+    Took entirely too long to fix the player switching thing.
+    My problem was that I had the player switch inside the main game function, when it should have been in the while
+    loop that keeps the game going.
+    I also added player points, and a function that announces the winner.  And tests for these of course.
+    I got through playing almost an entire game, and then a wrong number was typed in and it threw the whole game.
+    Which brings me to...
+
+    Goals for tomorrow: Exceptions!
+
