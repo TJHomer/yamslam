@@ -5,18 +5,18 @@ from yamslam.dice import *
 
 class Combos:
     combos = []
-
     chips = {}
 
     @classmethod
     def initialize_game(cls):
-        Combos.chips[ls.name] = 4
-        Combos.chips[fk.name] = 4
-        Combos.chips[fh.name] = 4
-        Combos.chips[fl.name] = 4
-        Combos.chips[ss.name] = 4
-        Combos.chips[tk.name] = 4
-        Combos.chips[tp.name] = 4
+        game_start = 1
+        Combos.chips[ls.name] = game_start
+        Combos.chips[fk.name] = game_start
+        Combos.chips[fh.name] = game_start
+        Combos.chips[fl.name] = game_start
+        Combos.chips[ss.name] = game_start
+        Combos.chips[tk.name] = game_start
+        Combos.chips[tp.name] = game_start
         return Combos.chips
 
 

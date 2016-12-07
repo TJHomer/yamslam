@@ -27,13 +27,13 @@ class CheckIfGameOverTest(unittest.TestCase):
         self.assertEqual(check_if_game_over(Test_dict),True)
 
     def test_game_over(self):
-        Test_dict = {'Large Straight': 0,
-                    'Four of a kind': 0,
-                    'Full House': 0,
-                    'Flush': 0,
-                    'Small Straight': 0,
-                    'Three of a kind': 0,
-                    'Two pair': 0}
+        Test_dict = {ls.name: 0,
+                    fk.name: 0,
+                    fh.name: 0,
+                    fl.name: 0,
+                    ss.name: 0,
+                    tk.name: 0,
+                    tp.name: 0}
 
 
         self.assertEqual(check_if_game_over(Test_dict),False)
@@ -58,3 +58,42 @@ class PointsAndWinner(unittest.TestCase):
 
     def test_winner(self):
         self.assertEqual(announce_winner(p1, p2), p1)
+
+
+
+# class TestWinningRolls(unittest.TestCase):
+#
+#     def test_turn_a(self):
+#         Combos.combos = {ls.name: 1,
+#                         fk.name: 1,
+#                         fh.name: 1,
+#                         fl.name: 1,
+#                         ss.name: 1,
+#                         tk.name: 1,
+#                         tp.name: 1}
+#
+#         self.assertEqual(score_the_roll([1, 2, 3, 4, 5]), ls)
+#
+#     def test_turn_b(self):
+#         self.assertEqual(score_the_roll([1, 2, 3, 4, 5]), ss)
+#
+#     def test_turn_c(self):
+#         self.assertEqual(score_the_roll([1, 2, 3, 4, 5]), None)
+#
+#     def test_turn_d(self):
+#         self.assertEqual(score_the_roll([5, 5, 5, 5, 5]), ys)
+#
+#     def test_turn_e(self):
+#         self.assertEqual(score_the_roll([5, 5, 5, 5, 4]), tk)
+#
+#     def test_turn_f(self):
+#         self.assertEqual(score_the_roll([5, 5, 5, 4, 5]), tp)
+#
+#     def test_turn_g(self):
+#         self.assertEqual(score_the_roll([5, 5, 3, 3, 3]), fh)
+#
+#     def test_turn_h(self):
+#         self.assertEqual(score_the_roll([5, 5, 3, 3, 3]), fl)
+#
+#     def test_turn_i(self):
+#         self.assertEqual(score_the_roll([5, 5, 3, 3, 3]), None)

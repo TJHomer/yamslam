@@ -116,3 +116,16 @@ December 6
 
     Goals for tomorrow: Exceptions!
 
+December 7
+    One bug I found and worked on today:
+        When the game ends, it is stuck in an infinite loop announcing who is the winner.  I fixed this by
+        moving check_if_game_over() from inside game() to the while loop that runs the game.
+    After that I tried to work on creating exceptions, but I couldn't quite get them to work properly.  I have to
+    look up a tutorial so I can understand better how exactly they work.
+    I also attempted to make some tests for score_the_roll(), but had some problems getting it to run properly.  I
+    think I have it formatted incorrectly but I didn't have the patience to figure it out. But I do know that it's
+    something that needs to be done, because playing through the game, at least once I saw it score twice for the
+    same roll.  So I need to work that out.  
+    The rest of the time I cleaned up the looks, added commas, time delays, tiny stuff like that.  It plays cleaner now.
+
+    Goals for tomorrow: Figure out exceptions

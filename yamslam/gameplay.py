@@ -1,6 +1,8 @@
 from yamslam.combos import *
 from yamslam.players import *
 from yamslam.dice import *
+from yamslam.exceptions import *
+import time
 
 
 roll = []
@@ -19,10 +21,12 @@ def check_if_game_over(chips):
 def announce_winner(player_one, player_two):
     if player_two.points > player_one.points:
         print ('Game over! {} is the winner!'.format(player_two.name))
-        return player_two
+        return p2
+
     else:
         print ('Game over! {} is the winner!'.format(player_one.name))
-        return player_one
+        return p1
+
 
 
 def switch_players(new_player):
@@ -38,8 +42,9 @@ def keep_or_reroll():
     for i in range(1, 3):
         Dice.throw_a_roll(len(reroll))
         print(Dice.get_roll_values())
-        print('Type the numbers you would like to reroll')
-        print('or press enter to keep this roll')
+        time.sleep(.8)
+        print('\nType the numbers you would like to reroll,')
+        print('or press enter to keep this roll.\n')
         choice = input('')
         if choice == '':
             return Dice.get_roll_values()
@@ -57,7 +62,6 @@ def keep_or_reroll():
 
 
 def score_the_roll(winning_roll):
-    print(winning_roll)
     for combo in Combos.combos:
         if Combos.chips[combo.name] != 0:
             if combo.check(winning_roll):
@@ -78,17 +82,15 @@ def add_points(current_player, combo):
 
 
 def game(current_player):
-    if check_if_game_over(Combos.chips):
-        pass
-    else:
-        announce_winner(p1, p2)
-        return False
-    print ("It is {}'s turn.".format(current_player.name))
     print (Combos.chips)
+    print("\nIt is {}'s turn.\n".format(current_player.name))
+    time.sleep(.5)
     roll = keep_or_reroll()
     winning_combo = score_the_roll(roll)
     add_points(current_player, winning_combo)
-    print ('{} has {} points'.format(current_player.name, current_player.points))
+    time.sleep(1)
+    print ('\n{} has {} points.\n'.format(current_player.name, current_player.points))
+    time.sleep(.5)
     Dice.roll = []
 
 
@@ -99,4 +101,9 @@ current_player = p1
 while True:
     game(current_player)
     current_player = switch_players(current_player)
+    if check_if_game_over(Combos.chips):
+        pass
+    else:
+        announce_winner(p1, p2)
+        break
 
