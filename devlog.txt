@@ -125,7 +125,23 @@ December 7
     I also attempted to make some tests for score_the_roll(), but had some problems getting it to run properly.  I
     think I have it formatted incorrectly but I didn't have the patience to figure it out. But I do know that it's
     something that needs to be done, because playing through the game, at least once I saw it score twice for the
-    same roll.  So I need to work that out.  
+    same roll.  So I need to work that out.
     The rest of the time I cleaned up the looks, added commas, time delays, tiny stuff like that.  It plays cleaner now.
 
     Goals for tomorrow: Figure out exceptions
+
+
+December 8
+    I found another bug so I spent my time fixing (or rather not fixing) that.
+    On December 5 I wrote that I fixed the pseudo-combo problem - where if you have [1, 1, 1, 1, 5], and you are out
+    of four of a kind chips, the game will not count that as 3 of a kind, even though it's obviously three of a kind.
+    So within the three of a kind check(), I told it to go see if four of a kind check() was true.  That seemed to work.
+    But when I played a game, and got the above roll, it would print out:
+        You got four of a kind!
+        You got three of a kind!
+    So it would tell you you got both.  I tried all kinds of things to fix it, moved functions, changed order, etc, etc.
+    and none of it worked.  So I had to revert all my work for the day.   Sad.
+    I think it will come down to fixing that a three of a kind will recognize a four of a kind and not relying on
+    the other function at all.  Fortunately I will only have to modify Three of a Kind and Two Pair.
+
+    Goals for tomorrow: That.  And exceptions.

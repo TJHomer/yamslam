@@ -95,15 +95,15 @@ def game(current_player):
 
 
 
-
-Combos.initialize_game()
-current_player = p1
-while True:
-    game(current_player)
-    current_player = switch_players(current_player)
-    if check_if_game_over(Combos.chips):
-        pass
-    else:
-        announce_winner(p1, p2)
-        break
+#
+# Combos.initialize_game()
+# current_player = p1
+# while True:
+#     game(current_player)
+#     current_player = switch_players(current_player)
+#     if check_if_game_over(Combos.chips):
+#         pass
+#     else:
+#         announce_winner(p1, p2)
+#         break
 

@@ -142,10 +142,7 @@ class three_of_a_kind(Combos):
         if ys.check(winning_roll):
             print('You got a {}!'.format(ys.name))
             return True
-        elif fk.check(winning_roll):
-            print('You got a {}!'.format(tk.name))
-            return True
-        elif winning_roll.count(winning_roll[2]) == 3:
+        elif winning_roll.count(winning_roll[2]) > 2:
             print('You got a {}!'.format(tk.name))
             return True
 
@@ -161,17 +158,19 @@ class two_pair(Combos):
     def check(self, winning_roll):
         is_it_two_pair = []
         for i in range(0,4):
-            if winning_roll.count(winning_roll[i]) == 2:
+            if winning_roll.count(winning_roll[i]) > 1:
                 is_it_two_pair.append(winning_roll[i])
         if ys.check(winning_roll):
             print('You got a {}!'.format(ys.name))
             return True
-        elif fk.check(winning_roll) or fh.check(winning_roll):
-            print('You got a {}!'.format(tp.name))
-            return True
         elif len(set(is_it_two_pair)) == 2:
             print('You got a {}!'.format(tp.name))
             return True
+        elif len(set(winning_roll)) == 2:
+            winning_roll = sorted(winning_roll)
+            if winning_roll.count(winning_roll[3]) == 4:
+                print('You got a {}!'.format(tp.name))
+                return True
 
 ys = yam_slam()
 ls = large_straight()
