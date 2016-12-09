@@ -12,7 +12,7 @@ There are 4 chips for each of 7 types of Combos:
   Three of a kind (10 points)
   Two pair (5 points)
   
-In addition, a player can get a Yam Slam (all dice the same) and will recieve the maximum point chip available.
+In addition, a player can get a Yam Slam (all dice the same) and will receive the maximum point chip available.
 
 In each turn, a player may roll up to three times and then take the chip according to the combination they get.
 After all the chips are gone, the game is over. 

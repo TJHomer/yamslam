@@ -23,7 +23,7 @@ December 1, 2016
 
 
 December 2
-    I got the main gameplay 'working'.  There are some bugs.
+    I got the main gameplay 'working' - sort of.  There are some bugs.
         1. It doesn't switch players
         2. It takes out two tokens for a winning hand instead of one
         3. At least one hand that should have been a Large Straight was scored as a Small Straight.
