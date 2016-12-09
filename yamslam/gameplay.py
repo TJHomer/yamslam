@@ -1,11 +1,7 @@
 from yamslam.combos import *
 from yamslam.players import *
 from yamslam.dice import *
-from yamslam.exceptions import *
 import time
-
-
-roll = []
 
 
 def check_if_game_over(chips):
@@ -28,7 +24,6 @@ def announce_winner(player_one, player_two):
         return p1
 
 
-
 def switch_players(new_player):
     if new_player == p2:
         current_player = p1
@@ -38,25 +33,28 @@ def switch_players(new_player):
 
 
 def keep_or_reroll():
-    reroll = [0, 0, 0, 0, 0]
     for i in range(1, 3):
-        Dice.throw_a_roll(len(reroll))
+        Dice.throw_a_roll(5 - len(Dice.roll))
         print(Dice.get_roll_values())
         time.sleep(.8)
         print('\nType the numbers you would like to reroll,')
         print('or press enter to keep this roll.\n')
-        choice = input('')
-        if choice == '':
+        choice = list(input(''))
+        if choice == []:
             return Dice.get_roll_values()
-        else:
-            choice = choice.replace(',', '')
-            choice = choice.replace(' ', '')
-            reroll = [int(i) for i in choice]
+        reroll = []
+        for i in choice:
+            try:
+                if 0 < int(i) < 7:
+                    reroll.append(i)
+            except(ValueError):
+                continue
+        for self in Dice.dice_set:
             for number in reroll:
-                for self in Dice.dice_set:
-                    if number == self.value:
-                        Dice.roll.remove(self)
-    Dice.throw_a_roll(len(reroll))
+                if int(number) in Dice.get_roll_values():
+                    if int(number) == self.value:
+                       Dice.roll.remove(self)
+    Dice.throw_a_roll(5 - len(Dice.roll))
     print(Dice.get_roll_values())
     return Dice.get_roll_values()
 
@@ -67,7 +65,6 @@ def score_the_roll(winning_roll):
             if combo.check(winning_roll):
                 Combos.chips[combo.name] -= 1
                 return combo
-
     else:
         print('Sorry, you got nothing.')
         return None
@@ -94,16 +91,14 @@ def game(current_player):
     Dice.roll = []
 
 
-
-#
-# Combos.initialize_game()
-# current_player = p1
-# while True:
-#     game(current_player)
-#     current_player = switch_players(current_player)
-#     if check_if_game_over(Combos.chips):
-#         pass
-#     else:
-#         announce_winner(p1, p2)
-#         break
+Combos.initialize_game()
+current_player = p1
+while True:
+    game(current_player)
+    current_player = switch_players(current_player)
+    if check_if_game_over(Combos.chips):
+        pass
+    else:
+        announce_winner(p1, p2)
+        break
 

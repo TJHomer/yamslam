@@ -1,8 +1,4 @@
 
-
-from yamslam.players import *
-from yamslam.dice import *
-
 class Combos:
     combos = []
     chips = {}
@@ -35,8 +31,6 @@ class large_straight(Combos):
         self.name = 'Large Straight'
         self.points = 50
         Combos.combos.append(self)
-
-
 
     def check(self, winning_roll):
         if ys.check(winning_roll):
@@ -106,13 +100,11 @@ class flush(Combos):
             return True
 
 
-
 class small_straight(Combos):
     def __init__ (self):
         self.name = 'Small Straight'
         self.points = 20
         Combos.combos.append(self)
-
 
     def check(self, winning_roll):
         if ys.check(winning_roll):
@@ -147,13 +139,11 @@ class three_of_a_kind(Combos):
             return True
 
 
-
 class two_pair(Combos):
     def __init__ (self):
         self.name = 'Two pair'
         self.points = 5
         Combos.combos.append(self)
-
 
     def check(self, winning_roll):
         is_it_two_pair = []

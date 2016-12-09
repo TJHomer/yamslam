@@ -2,8 +2,6 @@ import unittest
 from yamslam.combos import *
 
 
-
-
 class TestingLargeStraight(unittest.TestCase):
     def test_a_large_straight(self):
         self.assertEqual(ls.check([1, 2, 3, 4, 5]), True)

@@ -145,3 +145,9 @@ December 8
     the other function at all.  Fortunately I will only have to modify Three of a Kind and Two Pair.
 
     Goals for tomorrow: That.  And exceptions.
+
+December 9
+    Finally fixed it right.  It is a fully playable game, and it doesn't break if you type in bob or 99 as your dice
+    choice.  Took me long enough.
+
+    Goals for tomorrow: Research how I can make this a webapp.

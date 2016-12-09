@@ -1,5 +1,6 @@
 import random
 
+
 class Dice:
     dice_set = []
     roll = []
