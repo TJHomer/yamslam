@@ -12,7 +12,6 @@ class SwitchingPlayersTest(unittest.TestCase):
         self.assertEqual(switch_players(p2), p1)
 
 
-
 class CheckIfGameOverTest(unittest.TestCase):
     def test_game_is_not_over(self):
         Test_dict = {ls.name: 0,
@@ -22,7 +21,6 @@ class CheckIfGameOverTest(unittest.TestCase):
                     ss.name: 4,
                     tk.name: 2,
                     tp.name: 3}
-
 
         self.assertEqual(check_if_game_over(Test_dict),True)
 
@@ -35,14 +33,12 @@ class CheckIfGameOverTest(unittest.TestCase):
                     tk.name: 0,
                     tp.name: 0}
 
-
         self.assertEqual(check_if_game_over(Test_dict),False)
 
 
 class PointsAndWinner(unittest.TestCase):
     p1 = Players
     p2 = Players
-
 
     def test_adding_p1_points(self):
         self.assertEqual(add_points(p1, ls), 50)

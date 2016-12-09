@@ -22,8 +22,6 @@ class Dice:
         return roll_values
 
 
-
-
 class one(Dice):
     def __init__(self):
         Dice.dice_set.append(self)
