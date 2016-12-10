@@ -5,7 +5,7 @@ class Combos:
 
     @classmethod
     def initialize_game(cls):
-        game_start = 1
+        game_start = 4
         Combos.chips[ls.name] = game_start
         Combos.chips[fk.name] = game_start
         Combos.chips[fh.name] = game_start
