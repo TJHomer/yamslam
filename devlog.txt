@@ -151,3 +151,6 @@ December 9
     choice.  Took me long enough.
 
     Goals for tomorrow: Research how I can make this a webapp.
+
+December 10-11:
+    Installing Xtools, PyObjC, etc, and trying to figure them out basically.
