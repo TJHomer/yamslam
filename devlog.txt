@@ -154,3 +154,8 @@ December 9
 
 December 10-11:
     Installing Xtools, PyObjC, etc, and trying to figure them out basically.
+    
+    
+December 12:
+    Decided that a mac app was not the route I wanted to take and instead starting learning Django.  
+    Going through this tutorial - https://docs.djangoproject.com/en/1.10/
