@@ -19,6 +19,9 @@ def announce_winner(player_one, player_two):
         print ('Game over! {} is the winner!'.format(player_two.name))
         return p2
 
+    elif player_one.points == player_two.points:
+        print ('You have tied!')
+
     else:
         print ('Game over! {} is the winner!'.format(player_one.name))
         return p1
@@ -90,15 +93,15 @@ def game(current_player):
     time.sleep(.5)
     Dice.roll = []
 
-
-Combos.initialize_game()
-current_player = p1
-while True:
-    game(current_player)
-    current_player = switch_players(current_player)
-    if check_if_game_over(Combos.chips):
-        pass
-    else:
-        announce_winner(p1, p2)
-        break
-
+#
+# Combos.initialize_game()
+# current_player = p1
+# while True:
+#     game(current_player)
+#     current_player = switch_players(current_player)
+#     if check_if_game_over(Combos.chips):
+#         pass
+#     else:
+#         announce_winner(p1, p2)
+#         break
+#

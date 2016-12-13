@@ -56,6 +56,20 @@ class PointsAndWinner(unittest.TestCase):
         self.assertEqual(announce_winner(p1, p2), p1)
 
 
+class TestATie(unittest.TestCase):
+    p3 = Players
+    p4 = Players
+
+    def test_adding_p1_pointsb(self):
+        self.assertEqual(add_points(p3, ls), 50)
+
+    def test_adding_p2_pointsb(self):
+        self.assertEqual(add_points(p4, ls), 50)
+
+    def test_tie(self):
+        self.assertEqual(announce_winner(p3, p4), None)
+
+
 
 class TestWinningRolls(unittest.TestCase):
     Combos.chips = {ls.name: 1,

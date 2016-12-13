@@ -9,4 +9,6 @@ class Players:
 
 p1 = Players('Player One', 0)
 p2 = Players('Player Two', 0)
+p3 = Players('Test player', 0)
+p4 = Players('Test player', 0)
 
